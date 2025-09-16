@@ -64,6 +64,7 @@ for i in range(X.shape[1]):
     term = s(i, n_splines=20)
     terms = term if terms is None else terms + term
 
+
 model = PoissonGAM(terms)
 
 lam_grid = np.logspace(-3, 3, 9)   # try a modest range
@@ -76,7 +77,7 @@ for c in X_forecast.columns:
     X_forecast[c] = X_forecast[c].fillna(X[c].median())
     
     
-y_pred = modelFit.predict_mu(X_forecast)
+ pred = modelFit.predict_mu(X_forecast)
 
 # # Specify value to be predicited (trips) and date range index (Timestamp) for train data
 # trips = df_train['trips']
