@@ -19,11 +19,11 @@ eqn = """trips ~ -1 + year + month + day + hour"""
 y,x = pt.dmatrices(eqn, data=df_train)
 
 # Initialize and fit the model
-gam = LinearGAM(s(0) + s(1) + s(2) + s(3))
-modelFit = gam.gridsearch(np.asarray(x), y)
+model = LinearGAM(s(0) + s(1) + s(2) + s(3))
+modelFit = model.gridsearch(np.asarray(x), y)
 
 # Create x_test variable for forecasting
 x_test = pt.build_design_matrices([x.design_info], df_test)
 
 # Generate prediction
-pred = modelFit.predict_mu(x_test[0])
+pred = modelFit.predict(x_test[0])
